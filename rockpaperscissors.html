@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../Bootstrap-Portfolio/Assets/css/style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+            <div class="logo">Clint Brodar</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-light" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Bootstrap-Portfolio/index.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Bootstrap-Portfolio/portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Bootstrap-Portfolio/contact.html">Contact</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        <p id="directions-text">Press r, p or s to start playing!</p>
+        <p id="userchoice-text"></p>
+        <p id="computerchoice-text"></p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="ties-text"></p>
+    </div>
+
+    <script type="text/javascript">
+
+        var computerChoices = ["r", "p", "s"];
+
+        var wins = 0;
+        var losses = 0;
+        var ties = 0;
+
+        var directionsText = document.getElementById("directions-text");
+        var userChoiceText = document.getElementById("userchoice-text");
+        var computerChoiceText = document.getElementById("computerchoice-text");
+        var winsText = document.getElementById("wins-text");
+        var lossesText = document.getElementById("losses-text");
+        var tiesText = document.getElementById("ties-text");
+
+        document.onkeyup = function (event) {
+
+            var userGuess = event.key;
+
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+            if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+
+                if ((userGuess === "r" && computerGuess === "s") ||
+                    (userGuess === "s" && computerGuess === "p") ||
+                    (userGuess === "p" && computerGuess === "r")) {
+                    wins++;
+                } else if (userGuess === computerGuess) {
+                    ties++;
+                } else {
+                    losses++;
+                }
+
+                directionsText.textContent = "";
+
+                userChoiceText.textContent = "You chose: " + userGuess;
+                computerChoiceText.textContent = "The computer chose: " + computerGuess;
+                winsText.textContent = "wins: " + wins;
+                lossesText.textContent = "losses: " + losses;
+                tiesText.textContent = "ties: " + ties;
+            }
+        };
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            Copyright &copy; 2019 Clint Brodar
+        </div>
+    </footer>
+
+</body>
+
+</html>
